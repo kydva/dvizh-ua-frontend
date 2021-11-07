@@ -1,52 +1,38 @@
 <template>
   <div class="navbar">
     <NuxtLink to="/" class="logo">
-      <img height="40px" src="~/assets/img/logo.png">
+      <img height="55px" src="~/assets/img/logo.png" />
     </NuxtLink>
     <ul class="nav-items">
       <li>
-        <NuxtLink to="#">
-          Усі події
-        </NuxtLink>
+        <NuxtLink to="#"> Усі події </NuxtLink>
       </li>
       <li>
-        <NuxtLink to="#">
-          Концерти
-        </NuxtLink>
+        <NuxtLink to="#"> Концерти </NuxtLink>
       </li>
       <li>
-        <NuxtLink to="#">
-          Майстер-класи
-        </NuxtLink>
+        <NuxtLink to="#"> Майстер-класи </NuxtLink>
       </li>
       <li>
-        <NuxtLink to="#">
-          Семінари
-        </NuxtLink>
+        <NuxtLink to="#"> Семінари </NuxtLink>
       </li>
       <li>
-        <NuxtLink to="#">
-          Вечірки
-        </NuxtLink>
+        <NuxtLink to="#"> Вечірки </NuxtLink>
       </li>
     </ul>
     <ul class="nav-items">
       <li>
-        <NuxtLink to="#">
-          Увійти
-        </NuxtLink>
+        <NuxtLink to="/sign-in"> Увійти </NuxtLink>
       </li>
       <li>
-        <NuxtLink to="#">
-          Реєстрація
-        </NuxtLink>
+        <NuxtLink to="/sign-up"> Реєстрація </NuxtLink>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style lang="scss" scoped>
