@@ -6,21 +6,22 @@
 
 <style lang="scss" scoped>
 .container {
-  max-width: 1200px;
-  width: 100%;
+  width: 1200px;
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.97);
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
   padding: 20px;
 
   @include laptop {
-    max-width: 800px;
+    width: 800px;
   }
 
   @include tablet {
-    max-width: 600px;
+    width: 600px;
   }
 
   @include mobile {
+    width: auto;
     max-width: 400px;
   }
 }

@@ -1,4 +1,8 @@
 export default {
+  server: {
+    port: 5000,
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Dvizh.ua - Шо?',

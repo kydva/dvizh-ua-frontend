@@ -21,18 +21,53 @@
       </li>
     </ul>
     <ul class="nav-items">
-      <li>
-        <NuxtLink to="/sign-in"> Увійти </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink to="/sign-up"> Реєстрація </NuxtLink>
-      </li>
+      <template v-if="!user">
+        <li>
+          <NuxtLink to="/sign-in"> Увійти </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/sign-up"> Реєстрація </NuxtLink>
+        </li>
+      </template>
+      <template v-else>
+        <li>
+          <Dropdown>
+            <template #dropdown>
+              <NLink to="/me">Привіт, {{ user.name }}!</NLink>
+            </template>
+            <template #content>
+              <NLink to="/me">Мій профіль</NLink>
+              <NLink to="#" @click.native="logout">Вийти</NLink>
+            </template>
+          </Dropdown>
+        </li>
+      </template>
     </ul>
   </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import Vue from 'vue';
+
+import { IAuth } from '~/database/auth';
+
+import { store } from '~/store';
+
+import Dropdown from '@/components/ui/Dropdown.vue';
+
+export default Vue.extend({
+  components: { Dropdown },
+  computed: {
+    user: (): IAuth.User | null => store.state.auth.user,
+  },
+  methods: {
+    logout() {
+      store.dispatch.auth.logout();
+
+      this.$router.push('/');
+    },
+  },
+});
 </script>
 
 <style lang="scss" scoped>

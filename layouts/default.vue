@@ -2,7 +2,9 @@
   <div class="layout">
     <TheNavBar />
     <Container class="container">
-      <Nuxt />
+      <transition mode="out-in" name="fade">
+        <Nuxt />
+      </transition>
     </Container>
   </div>
 </template>
