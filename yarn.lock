@@ -958,6 +958,14 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
+"@mathieustan/vue-datepicker@^0.2.11":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@mathieustan/vue-datepicker/-/vue-datepicker-0.2.11.tgz#58d420c04312417fb10978f838ef984c28389c2d"
+  integrity sha512-+EQvlAwnC0fn8UCUgYaGI1r027HzrIWIbqtcYZMQ8TRZbhzT3ILXlqRSxX4z547vF7dpmCjNyvpLAF5zFMnQug==
+  dependencies:
+    body-scroll-lock "^2.6.1"
+    dayjs "1.8.24"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -2487,6 +2495,11 @@ bn.js@^5.0.0, bn.js@^5.1.1:
   resolved "https://registry.npmjs.org/bn.js/-/bn.js-5.2.0.tgz"
   integrity sha512-D7iWRBvnZE8ecXiLj/9wbxH7Tk79fAh8IHaTNq1RWRixsS02W+5qS+iE9yq6RYl0asXx5tw0bLhmT5pIfbSquw==
 
+body-scroll-lock@^2.6.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/body-scroll-lock/-/body-scroll-lock-2.7.1.tgz#caf3f9c91773af1ffb684cd66ed9137b5b737014"
+  integrity sha512-hS53SQ8RhM0e4DsQ3PKz6Gr2O7Kpdh59TWU98GHjaQznL7y4dFycEPk7pFQAikqBaUSCArkc5E3pe7CWIt2fZA==
+
 boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz"
@@ -3461,6 +3474,16 @@ cyclist@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/cyclist/-/cyclist-1.0.1.tgz"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
+
+date-format-parse@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/date-format-parse/-/date-format-parse-0.2.7.tgz#a2f78bca857a821785b48abedd4426c65aa7b918"
+  integrity sha512-/+lyMUKoRogMuTeOVii6lUwjbVlesN9YRYLzZT/g3TEZ3uD9QnpjResujeEqUW+OSNbT7T1+SYdyEkTcRv+KDQ==
+
+dayjs@1.8.24:
+  version "1.8.24"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.24.tgz#2ef8a2ab9425eaf3318fe78825be1c571027488d"
+  integrity sha512-bImQZbBv86zcOWOq6fLg7r4aqMx8fScdmykA7cSh+gH1Yh8AM0Dbw0gHYrsOrza6oBBnkK+/OaR+UAa9UsMrDw==
 
 de-indent@^1.0.2:
   version "1.0.2"
@@ -9076,6 +9099,13 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
+
+vue2-datepicker@^3.10.4:
+  version "3.10.4"
+  resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.10.4.tgz#dc497ada329c98539de55b71d7ff479fb200cde6"
+  integrity sha512-WIdYa1fSF9rQCXOGG+qvTiE7q7+K1FIpUUZ/r6Q/tUP+NO7IePEoDAY+Lpy73ofj/4zmrT2FjD5O5QChVKFOSQ==
+  dependencies:
+    date-format-parse "^0.2.7"
 
 vue@^2.6.12, vue@^2.6.14:
   version "2.6.14"

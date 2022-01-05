@@ -1,5 +1,5 @@
 <template>
-  <input :value="value" @input="$emit('input', $event.target.value)" />
+  <component class="input" :is="tag" :value="value" @input="$emit('input', $event.target.value)" />
 </template>
 
 <script lang="ts">
@@ -12,11 +12,19 @@ export default Vue.extend({
       default: '',
     },
   },
+
+  computed: {
+    tag(): 'input' | 'textarea' {
+      return this.$attrs.type === 'textarea' ? 'textarea' : 'input'
+    }
+  }
 });
 </script>
 
 <style lang="scss" scoped>
-input {
+.input {
+  resize: none;
+  box-sizing: border-box;
   width: 100%;
   margin: 10px 0;
   padding: 15px 12px;

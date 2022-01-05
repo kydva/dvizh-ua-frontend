@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-in">
+  <form class="sign-in" @submit.prevent="login">
     <div v-if="error" class="error">Неправильний логін чи пароль</div>
 
     <label for="name">Логін</label>
@@ -19,7 +19,7 @@
     <div class="register-link">
       Ще не зареєстровані? <NLink to="/sign-up">Зареєструйтесь!</NLink>
     </div>
-  </div>
+  </form>
 </template>
 
 <script lang="ts">
@@ -49,7 +49,7 @@ export default Vue.extend({
 
         await store.dispatch.auth.login(this.credentials);
 
-        this.$router.push('/');
+        this.$router.back()
       } catch (e) {
         this.error = true;
       }

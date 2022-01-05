@@ -2,9 +2,13 @@ import Vue from 'vue';
 
 import Vuex from 'vuex';
 
-import { createDirectStore } from 'direct-vuex';
+import {createDirectStore} from 'direct-vuex';
 
-import { auth } from './auth';
+import {auth} from './auth';
+
+import {categories} from './categories'
+
+import {cities} from './cities'
 
 Vue.use(Vuex);
 
@@ -17,11 +21,17 @@ const {
 } = createDirectStore({
   modules: {
     auth,
+    categories,
+    cities
   },
 });
 
 function initStore() {
   store.dispatch.auth.fetchUser();
+
+  store.dispatch.categories.fetchCategories();
+
+  store.dispatch.cities.fetchCities();
 
   return store.original;
 }

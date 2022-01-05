@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-up">
+  <form @submit.prevent="register" class="sign-up">
     <FormErrors :errors="errors" />
 
     <label for="name">Логін</label>
@@ -15,15 +15,15 @@
       placeholder="Введіть бажаний пароль"
       type="password" />
 
-    <label for="password">Підтвердження паролю</label>
+    <label for="password-confirm">Підтвердження паролю</label>
     <FormInput
-      id="password"
+      id="password-confirm"
       v-model="user.passwordConfirmation"
       placeholder="Підтвердіть пароль"
       type="password" />
 
-    <VButton @click.native="login">Увійти</VButton>
-  </div>
+    <VButton >Увійти</VButton>
+  </form>
 </template>
 
 <script lang="ts">
@@ -50,7 +50,7 @@ export default Vue.extend({
   }),
 
   methods: {
-    async login() {
+    async register() {
       try {
         this.errors = [];
 
@@ -73,10 +73,5 @@ export default Vue.extend({
   @include mobile {
     max-width: 90%;
   }
-}
-
-.error {
-  color: rgb(182, 56, 56);
-  margin-bottom: 10px;
 }
 </style>

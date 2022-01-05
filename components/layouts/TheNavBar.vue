@@ -5,22 +5,16 @@
     </NuxtLink>
     <ul class="nav-items">
       <li>
-        <NuxtLink to="#"> Усі події </NuxtLink>
+        <NuxtLink to="/events"> Усі події </NuxtLink>
       </li>
-      <li>
-        <NuxtLink to="#"> Концерти </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink to="#"> Майстер-класи </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink to="#"> Семінари </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink to="#"> Вечірки </NuxtLink>
+      <li v-for="category in categories" :key="category.id">
+        <NuxtLink :to="`/events?category=${category.id}`"> {{category.name}} </NuxtLink>
       </li>
     </ul>
     <ul class="nav-items">
+      <li class="send-event">
+        <NuxtLink to="/events/send"> Надіслати подію </NuxtLink>
+      </li>
       <template v-if="!user">
         <li>
           <NuxtLink to="/sign-in"> Увійти </NuxtLink>
@@ -55,10 +49,13 @@ import { store } from '~/store';
 
 import Dropdown from '@/components/ui/Dropdown.vue';
 
+import {ICategories} from "~/database/categories";
+
 export default Vue.extend({
   components: { Dropdown },
   computed: {
     user: (): IAuth.User | null => store.state.auth.user,
+    categories: (): ICategories.Category[] => store.state.categories.categories,
   },
   methods: {
     logout() {
@@ -105,5 +102,9 @@ export default Vue.extend({
       padding: 1rem;
     }
   }
+}
+
+.send-event {
+  border-right: rgba(202, 202, 202, 0.23) 1px solid;
 }
 </style>
