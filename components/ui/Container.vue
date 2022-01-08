@@ -12,7 +12,8 @@
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
-  padding: 20px;
+  padding: 20px 20px 50px 20px;
+  border-radius: 0 16px 16px 0;
 
   @include laptop {
     max-width: 1020px;

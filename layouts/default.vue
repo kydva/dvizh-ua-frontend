@@ -6,6 +6,7 @@
         <Nuxt />
       </transition>
     </Container>
+    <TheFooter/>
   </div>
 </template>
 
@@ -14,10 +15,12 @@ import Vue from 'vue';
 
 import TheNavBar from '@/components/layouts/TheNavBar.vue';
 
+import TheFooter from '@/components/layouts/TheFooter.vue'
+
 import Container from '~/components/ui/Container.vue';
 
 export default Vue.extend({
-  components: { TheNavBar, Container },
+  components: { TheNavBar, Container, TheFooter },
 });
 </script>
 

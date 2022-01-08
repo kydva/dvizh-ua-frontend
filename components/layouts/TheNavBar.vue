@@ -35,7 +35,7 @@
               <NLink to="#" @click.native="logout">Вийти</NLink>
             </template>
           </Dropdown>
-          `
+
         </li>
       </template>
     </ul>
