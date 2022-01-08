@@ -14,7 +14,15 @@
     <div v-if="total === 0" class="no-results">
       Нічого не знайдено(
     </div>
-      <EventCard v-for="event in events" :key="event.id" :event="event"/>
+    <div v-for="event in events" :key="event.id"  class="event">
+      <EventCard :event="event" />
+      <div class="check-button" @click="approve(event.id)">
+        ✔
+      </div>
+      <div v-if="!event.approved" class="delete-button" @click="remove(event.id)">
+        ❌
+      </div>
+    </div>
     <VButton
       v-if="page < totalPages"
       class="load-more-button"
@@ -30,7 +38,7 @@ import Vue from 'vue'
 
 import {EventCard} from "~/components/pages/events";
 
-import {IEvents, EventsGateway} from "~/database/events";
+import {EventsGateway, IEvents} from "~/database/events";
 
 import FormInput from "~/components/ui/FormInput.vue";
 
@@ -42,9 +50,15 @@ import {store} from "~/store";
 
 import VSelect from "~/components/ui/VSelect.vue";
 
-
 export default Vue.extend({
   components: {VSelect, VButton, FormInput, EventCard},
+
+  // eslint-disable-next-line consistent-return
+  middleware({ redirect}) {
+    if (!store.getters.auth.isAdmin) {
+      return redirect('/')
+    }
+  },
 
   data: () => ({
     events: [] as IEvents.Event[],
@@ -55,7 +69,8 @@ export default Vue.extend({
       skip: 0,
       category: null,
       search: null,
-      city: null
+      city: null,
+      moderation: true
     } as IEvents.ListEventsQuery
   }),
 
@@ -98,11 +113,11 @@ export default Vue.extend({
         return
       }
 
-        this.query.skip += this.query.take
+      this.query.skip += this.query.take
 
-        const {events} = await EventsGateway.getEvents(this.query);
+      const {events} = await EventsGateway.getEvents(this.query);
 
-        this.events.push(...events)
+      this.events.push(...events)
     }
   },
 
@@ -118,6 +133,25 @@ export default Vue.extend({
     loadMore() {
       this.page += 1
     },
+
+    async approve(eventId: number) {
+      await EventsGateway.approveEvent(String(eventId));
+
+      this.events.map((e) => {
+        if (e.id === eventId) {
+          e.approved = true;
+        }
+
+        return e
+      })
+    },
+
+    async remove(eventId: number) {
+      await EventsGateway.deleteEvent(String(eventId));
+
+
+      this.events = this.events.filter((e) => e.id !== eventId)
+    }
   }
 })
 </script>
@@ -152,6 +186,27 @@ export default Vue.extend({
 
 .no-results {
   text-align: center;
+}
+
+.event {
+  position: relative;
+}
+
+.check-button {
+  cursor: pointer;
+  color: green;
+  font-size: 30px;
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}
+
+.delete-button {
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
 }
 
 </style>

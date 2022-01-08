@@ -25,6 +25,8 @@ export namespace IEvents {
     category?: number | null;
 
     search?: string | null;
+
+    moderation?: boolean
   }
 
   export interface Event {

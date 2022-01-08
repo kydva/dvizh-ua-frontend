@@ -25,4 +25,18 @@ export class EventsGateway {
 
     return res.data
   }
+
+  static async getEvent(id: string):Promise<IEvents.Event> {
+    const res = await api.get(`/events/${id}`)
+
+    return res.data
+  }
+
+  static async approveEvent(id: string) {
+    await api.put(`/events/${id}/approve`)
+  }
+
+  static async deleteEvent(id: string) {
+    await api.delete(`/events/${id}`)
+  }
 }

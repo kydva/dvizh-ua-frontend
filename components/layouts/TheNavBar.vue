@@ -31,6 +31,7 @@
             </template>
             <template #content>
               <NLink to="/me">Мій профіль</NLink>
+              <NLink v-if="isAdmin" to="/admin-panel">Адмін панель</NLink>
               <NLink to="#" @click.native="logout">Вийти</NLink>
             </template>
           </Dropdown>
@@ -55,6 +56,7 @@ export default Vue.extend({
   components: { Dropdown },
   computed: {
     user: (): IAuth.User | null => store.state.auth.user,
+    isAdmin: (): boolean => !!store.getters.auth.isAdmin,
     categories: (): ICategories.Category[] => store.state.categories.categories,
   },
   methods: {

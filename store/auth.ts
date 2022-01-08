@@ -1,8 +1,10 @@
-import { defineModule } from 'direct-vuex';
+import {defineModule} from 'direct-vuex';
 
-import { store } from '.';
+import {store} from '.';
 
-import { AuthGateway, IAuth } from '@/database/auth';
+import {AuthGateway, IAuth} from '@/database/auth';
+
+import Role = IAuth.Role;
 
 interface State {
   user: IAuth.User | null;
@@ -12,6 +14,12 @@ export const auth = defineModule({
   namespaced: true,
 
   state: { user: null } as State,
+
+  getters: {
+    isAdmin(state: State):Boolean {
+      return state.user?.roles.includes(Role.admin) || false
+    }
+  },
 
   mutations: {
     setUser(state: State, user: IAuth.User) {
