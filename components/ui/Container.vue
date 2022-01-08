@@ -6,7 +6,8 @@
 
 <style lang="scss" scoped>
 .container {
-  width: auto;
+  position: relative;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.96);
@@ -18,6 +19,7 @@
   }
 
   @include tablet {
+    width: auto;
     max-width: 600px;
   }
 
