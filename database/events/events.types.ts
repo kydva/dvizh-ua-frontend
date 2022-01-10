@@ -20,6 +20,10 @@ export namespace IEvents {
 
     take: number;
 
+    start: Date;
+
+    end: Date;
+
     city?: number | null;
 
     category?: number | null;

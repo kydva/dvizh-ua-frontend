@@ -10,11 +10,13 @@
         <option value="">-- Місто проведення --</option>
         <option v-for="city in cities" :key="city.id" :value="city.id">{{ city.name }}</option>
       </VSelect>
+
+      <DatePicker v-model="eventTimeRange" placeholder="Час проведення події" class="date-filter" range format="DD-MM-YYYY"/>
     </div>
     <div v-if="total === 0" class="no-results">
       Нічого не знайдено(
     </div>
-      <EventCard v-for="event in events" :key="event.id" :event="event"/>
+    <EventCard v-for="event in events" :key="event.id" :event="event"/>
     <VButton
       v-if="page < totalPages"
       class="load-more-button"
@@ -55,7 +57,9 @@ export default Vue.extend({
       skip: 0,
       category: null,
       search: null,
-      city: null
+      city: null,
+      start: null as Date | null,
+      end: null as Date | null,
     } as IEvents.ListEventsQuery
   }),
 
@@ -72,13 +76,24 @@ export default Vue.extend({
       return Math.ceil(total)
     },
 
-    filterKey():any[] {
-      return [this.query.category, this.query.search, this.query.city]
+    filterKey(): any[] {
+      return [this.query.category, this.query.search, this.query.city, this.query.start, this.query.end]
     },
 
     cities(): ICities.City[] {
       return store.state.cities.cities
-    }
+    },
+
+    eventTimeRange: {
+      get(): Date[] {
+        return [this.query.start, this.query.end]
+      },
+      set([start, end]: Date[]): void {
+        this.query.start = start;
+
+        this.query.end = end;
+      }
+    },
   },
 
   watch: {
@@ -91,18 +106,19 @@ export default Vue.extend({
 
       this.query.skip = 0;
 
-      this.fetchEvents()    },
+      this.fetchEvents()
+    },
 
     async page(num) {
       if (num === 1) {
         return
       }
 
-        this.query.skip += this.query.take
+      this.query.skip += this.query.take
 
-        const {events} = await EventsGateway.getEvents(this.query);
+      const {events} = await EventsGateway.getEvents(this.query);
 
-        this.events.push(...events)
+      this.events.push(...events)
     }
   },
 
@@ -129,7 +145,7 @@ export default Vue.extend({
   margin-bottom: 80px;
   justify-content: center;
 
-  @include mobile {
+  @include tablet {
     flex-direction: column;
   }
 }
@@ -143,6 +159,12 @@ export default Vue.extend({
   .search-button {
     height: 49px;
   }
+}
+
+.date-filter {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
 }
 
 .load-more-button {
