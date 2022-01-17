@@ -52,4 +52,10 @@ export default {
   styleResources: {
     scss: ['~assets/scss/index.scss'],
   },
+
+  pageTransition: {
+    name: "fade",
+    mode: "out-in"
+  },
+
 };

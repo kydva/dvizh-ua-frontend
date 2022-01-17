@@ -1,10 +1,8 @@
 <template>
   <div class="layout">
-    <TheNavBar />
+    <TheNavBar/>
     <Container class="container">
-      <transition mode="out-in" name="fade">
-        <Nuxt />
-      </transition>
+      <Nuxt/>
     </Container>
     <TheFooter/>
   </div>
@@ -20,7 +18,7 @@ import TheFooter from '@/components/layouts/TheFooter.vue'
 import Container from '~/components/ui/Container.vue';
 
 export default Vue.extend({
-  components: { TheNavBar, Container, TheFooter },
+  components: {TheNavBar, Container, TheFooter},
 });
 </script>
 
@@ -34,5 +32,6 @@ export default Vue.extend({
 
 .container {
   flex-grow: 1;
+  min-height: 100vh;
 }
 </style>
