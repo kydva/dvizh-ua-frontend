@@ -49,7 +49,7 @@ export default Vue.extend({
 
   computed: {
     picture(): string {
-      return `http://localhost:3000/storage/${this.event.picture}`
+      return `/storage/${this.event.picture}`
     },
 
     date(): string {
