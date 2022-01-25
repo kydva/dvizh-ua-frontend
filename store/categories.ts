@@ -20,10 +20,6 @@ export const categories = defineModule({
   },
 
   actions: {
-    // sendCategory(_, category: ICategories.PostCategoryForm):Promise<ICategories.Category> {
-    //   return CategoriesGateway.sendCategory(category)
-    // }
-
     async fetchCategories() {
       const categories = await CategoriesGateway.getCategories()
 

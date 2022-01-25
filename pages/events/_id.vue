@@ -1,29 +1,33 @@
 <template>
-  <div class="event">
-    <div class="image">
-      <img :src="picture"/>
-    </div>
-    <div class="content">
-      <h1 class="title">{{event.name}}</h1>
-      <div class="info">
-        <div class="date">
-          <img width="17" :src="require('~/assets/img/icons/calendar.svg')"/>
-          <span>{{ date }}</span>
-        </div>
-        <div class="location">
-          <img width="17" :src="require('~/assets/img/icons/location.svg')">
-          <span>{{ event.city.name }}, {{event.location}}</span>
-        </div>
-        <div v-if="event.price" class="price">
-          <img width="17" :src="require('~/assets/img/icons/price.svg')">
-          <span>{{ event.price }}</span>
-        </div>
+  <div>
+    <Breadcrumbs :event="event"/>
+    <div class="event">
+      <div class="image">
+        <img :src="picture"/>
       </div>
-      <div class="description">
-        {{event.description}}
+      <div class="content">
+        <h1 class="title">{{event.name}}</h1>
+        <div class="info">
+          <div class="date">
+            <img width="17" :src="require('~/assets/img/icons/calendar.svg')"/>
+            <span>{{ date }}</span>
+          </div>
+          <div class="location">
+            <img width="17" :src="require('~/assets/img/icons/location.svg')">
+            <span>{{ event.city.name }}, {{event.location}}</span>
+          </div>
+          <div v-if="event.price" class="price">
+            <img width="17" :src="require('~/assets/img/icons/price.svg')">
+            <span>{{ event.price }}</span>
+          </div>
+        </div>
+        <div class="description">
+          {{event.description}}
+        </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script lang="ts">
@@ -31,8 +35,10 @@ import Vue from 'vue'
 
 import {EventsGateway, IEvents} from "~/database/events";
 
-export default Vue.extend({
+import Breadcrumbs from "~/components/pages/events/Breadcrumbs.vue";
 
+export default Vue.extend({
+  components: {Breadcrumbs},
   async asyncData({params}) {
     return {event: await EventsGateway.getEvent(params.id)}
   },
